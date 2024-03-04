@@ -2,4 +2,4 @@
 /build
 /.fleet
 /.idea
-*.lock
+/Cargo.lock
