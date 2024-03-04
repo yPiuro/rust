@@ -1,13 +1,20 @@
 [package]
-name = "new"
-version = "0.1.0"
+name = "Rust Grade"
+version = "0.1.1"
 edition = "2021"
+authors = "yPiuro"
+repository = "yPiuro/rust"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 
 [package.metadata.winresource]
-  
+OriginalFilename = "main.rs"
+LegalCopyright = "Copyright © 2024"
+FileDescription = "Simple program for a asingment"
+ProductName = "Rust Grade"
+ProductVersion = "0,1,1"
 
 [dependencies]
 crossterm = "0.27.0"
