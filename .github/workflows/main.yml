@@ -1,3 +1,6 @@
+name: compile
+run-name: ${{ github.actor }}\'s rust compile
+on: workflow_dispatch
 jobs:
   release:
     name: Release - ${{ matrix.platform.release_for }}
