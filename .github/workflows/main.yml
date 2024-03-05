@@ -1,5 +1,5 @@
 name: compile
-run-name: ${{ github.actor }}\'s rust compile
+run-name: ${{ github.actor }}'s rust compile
 on: workflow_dispatch
 jobs:
   release:
