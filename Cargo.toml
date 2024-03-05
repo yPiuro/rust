@@ -13,10 +13,10 @@ crossterm = "0.27.0"
 either = "1.10.0"
 native-dialog = "0.7.0"
 
-[target.'cfg(windows)'.build-dependencies]
+[build-dependencies]
 winresource = "0.1.17" 
 
-[target.'cfg(windows)'.package.metadata.winresource]
+[package.metadata.winresource]
 OriginalFilename = "main.rs"
 LegalCopyright = "Copyright © 2024"
 FileDescription = "Simple program for a asingment"
