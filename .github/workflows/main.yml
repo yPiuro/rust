@@ -44,7 +44,9 @@ jobs:
           args: "--release"
           strip: true
       - name: Get Binaries
-        uses: edwardgeorge/file-outputs-action@main
+        uses: actions/upload-artifact@v4
         with:
-          files: binary_${{ matrix.platform.release_for }}=${{ matrix.platform.path }}/${{ matrix.platform.bin }}
-
+          name: binary_${{ matrix.platform.release_for }}
+          path: ${{ matrix.platform.path }}/${{ matrix.platform.bin }}
+          compression-level: 9
+          overwrite: true
