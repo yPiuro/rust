@@ -13,6 +13,7 @@ jobs:
             bin: rust_grade
             name: precious-FreeBSD-x86_64.tar.gz
             command: build
+            path: /project
 
           - release_for: Windows-x86_64
             os: windows-latest
@@ -20,6 +21,7 @@ jobs:
             bin: rust_grade.exe
             name: precious-Windows-x86_64.zip
             command: both
+            path: D:\a\rust\rust
 
           - release_for: macOS-x86_64
             os: macOS-latest
@@ -27,6 +29,7 @@ jobs:
             bin: rust_grade
             name: precious-Darwin-x86_64.tar.gz
             command: both
+            path: /Users/runner/work/rust/rust
 
             # more release targets here ...
 
@@ -41,3 +44,8 @@ jobs:
           target: ${{ matrix.platform.target }}
           args: "--release"
           strip: true
+      - name: Get Binaries
+        uses: edwardgeorge/file-outputs-action@main
+        with:
+          files: binary_${{ matrix.platform.release_for }}=${{ matrix.platform.path }}/${{ matrix.platform.bin }}
+
