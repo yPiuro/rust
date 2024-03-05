@@ -11,26 +11,25 @@ jobs:
             os: ubuntu-20.04
             target: x86_64-unknown-freebsd
             bin: rust_grade
-            name: precious-FreeBSD-x86_64.tar.gz
+            name: rust_grade-FreeBSD-x86_64.tar.gz
             command: build
-            path: /project
+            path: target/x86_64-unknown-freebsd/release
 
           - release_for: Windows-x86_64
             os: windows-latest
             target: x86_64-pc-windows-msvc
             bin: rust_grade.exe
-            name: precious-Windows-x86_64.zip
+            name: rust_grade-Windows-x86_64.zip
             command: both
-            path: D:\a\rust\rust
+            path: target/x86_64-pc-windows-msvc/release
 
           - release_for: macOS-x86_64
             os: macOS-latest
             target: x86_64-apple-darwin
             bin: rust_grade
-            name: precious-Darwin-x86_64.tar.gz
+            name: rust_grade-Darwin-x86_64.tar.gz
             command: both
-            path: /Users/runner/work/rust/rust
-
+            path: target/x86_64-apple-darwin/release
             # more release targets here ...
 
     runs-on: ${{ matrix.platform.os }}
