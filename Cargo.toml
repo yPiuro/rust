@@ -1,8 +1,8 @@
 [package]
-name = "RustGrade"
+name = "rust_grade"
 version = "0.1.1"
 edition = "2021"
-authors = "yPiuro"
+authors = ["yPiuro <mail@piuro.lol>"]
 repository = "yPiuro/rust"
 
 
@@ -19,5 +19,6 @@ ProductVersion = "0,1,1"
 [dependencies]
 crossterm = "0.27.0"
 either = "1.10.0"
+native-dialog = "0.7.0"
 [target.'cfg(windows)'.build-dependencies]
 winresource = "0.1.17" 
