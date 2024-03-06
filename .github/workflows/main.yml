@@ -7,13 +7,13 @@ jobs:
     strategy:
       matrix:
         platform:
-          - release_for: FreeBSD-x86_64
+          - release_for: Linux-x86_64
             os: ubuntu-20.04
-            target: x86_64-unknown-freebsd
+            target: x86_64-unknown-linux-gnu
             bin: rust_grade
-            name: rust_grade-FreeBSD-x86_64.tar.gz
+            name: rust_grade-Linux-x86_64.tar.gz
             command: build
-            path: target/x86_64-unknown-freebsd/release
+            path: target/x86_64-unknown-linux-gnu/release
 
           - release_for: Windows-x86_64
             os: windows-latest
@@ -23,7 +23,7 @@ jobs:
             command: both
             path: target/x86_64-pc-windows-msvc/release
 
-          - release_for: macOS-x86_64
+          - release_for: MacOS-x86_64
             os: macOS-latest
             target: x86_64-apple-darwin
             bin: rust_grade
@@ -46,7 +46,7 @@ jobs:
       - name: Get Binaries
         uses: actions/upload-artifact@v4
         with:
-          name: binary_${{ matrix.platform.release_for }}
+          name: ${{ matrix.platform.release_for }}
           path: ${{ matrix.platform.path }}/${{ matrix.platform.bin }}
           compression-level: 9
           overwrite: true
