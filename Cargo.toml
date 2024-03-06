@@ -1,6 +1,6 @@
 [package]
 name = "rust_grade"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["yPiuro <mail@piuro.lol>"]
 repository = "yPiuro/rust"
@@ -18,7 +18,8 @@ winresource = "0.1.17"
 
 [package.metadata.winresource]
 OriginalFilename = "main.rs"
-LegalCopyright = "Copyright © 2024"
-FileDescription = "Simple program for a asingment"
 ProductName = "Rust Grade"
-ProductVersion = "0,1,1"
+ProductVersion = "0.1.2"
+
+#LegalCopyright = "Copyright © 2024"
+#FileDescription = "Simple program for a asingment"

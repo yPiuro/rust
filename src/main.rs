@@ -1,6 +1,6 @@
 mod util;
 use crossterm::{self, style, style::Stylize,terminal::{ EnterAlternateScreen, LeaveAlternateScreen}};
-use std::{self, io, isize};
+use std::{self, io::{self, stdout, Write}, isize};
 use native_dialog;
 
 fn main() {
@@ -24,6 +24,10 @@ fn main() {
     
     println!("\n{}: {average}", "Average".with(style::Color::Rgb { r: 255, g: 16, b: 240 }).to_string());
     
+    stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut String::default()).unwrap();
+
 }   
 
 

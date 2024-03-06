@@ -28,7 +28,7 @@ pub fn alt_input<T: FromStr>(text: String, err_handler: &str) -> Either<T,  ()> 
     print!("{}: ", text.trim().to_string());
     
     
-    io::stdout().flush().expect("Sorry, your computer is not supported.");
+    io::stdout().flush().unwrap();
     
     io::stdin().read_line(&mut user_input).unwrap();
     
