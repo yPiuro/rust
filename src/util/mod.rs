@@ -2,19 +2,19 @@ use std::{io::{self, Write}, str::FromStr};
 use crossterm::{execute, terminal::{EnterAlternateScreen, LeaveAlternateScreen}};
 use either::*;
 
-///Enters terminal alternate screen and takes user input after displaying 'text' and parses the input to the type supplied in 'T'
-/// If there is an error during parsing the 'err_handler' value can be used to handle the input, if there is no err_handler the function will just restart
-///### Parameters
+///Enters terminal alternate screen and takes user input after displaying 'text' and parses the input to the type supplied in 'T'<br>If there is an error during parsing the 'err_handler' value if provided can be used to handle the input.<br>‎‎
+///### Parameters:
 ///```
 ///text: String
 ///
 ///T: Type
 ///```
+///‎<br>‎
 ///## Examples
 ///```
-///alt_input::<i32>("What is your age") // -> i32
-///alt_input::<String>("What is your name") // -> String
-///alt_input::<i32>("What is your age", "loop") // -> will just stop the function
+///alt_input::<i32>("What is your age", "") // -> i32
+///alt_input::<String>("What is your name", "") // -> String
+///alt_input::<i32>("What is your grade?", "loop_grades") // -> i32 With custom error handling
 ///```
 pub fn alt_input<T: FromStr>(text: String, err_handler: &str) -> Either<T,  ()> {
     let text_copy: String = text.clone();
@@ -47,6 +47,20 @@ pub fn alt_input<T: FromStr>(text: String, err_handler: &str) -> Either<T,  ()> 
 
 }   
 
+
+///## Takes user input after displaying 'text' and checks if the input is 'y' or 'n' (Non case-sensitive), if not it restarts the function.
+///
+///
+///### Parameters:
+///```
+///text: String
+///```
+///<br/>
+///
+///## Example:
+///```
+///input_y_or_n("Do you want to keep playing?") // -> bool
+///```
 pub fn input_y_or_n(text: &str) -> bool {
     let user_input: String = alt_input::<String>(text.to_string(), "none").unwrap_left().to_lowercase();
     
@@ -57,11 +71,17 @@ pub fn input_y_or_n(text: &str) -> bool {
         return false
     }
     else {
-    return input_y_or_n(text)
+        return input_y_or_n(text)
     }
     
 }
 
+
+///Clears terminal screen (Not OS dependant)<br>‎‎
+///## Examples
+///```
+///clear_console()
+///```
 pub fn clear_console() {
     if cfg!(target_os = "windows") {
         std::process::Command::new("cmd").args(["/c", "cls"]).status().unwrap();

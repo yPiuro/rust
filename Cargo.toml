@@ -1,6 +1,6 @@
 [package]
 name = "rust_grade"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 authors = ["yPiuro <mail@piuro.lol>"]
 repository = "yPiuro/rust"
@@ -12,6 +12,7 @@ repository = "yPiuro/rust"
 crossterm = "0.27.0"
 either = "1.10.0"
 native-dialog = "0.7.0"
+terminal_size = "0.3.0"
 
 [build-dependencies]
 winresource = "0.1.17" 
@@ -19,7 +20,7 @@ winresource = "0.1.17"
 [package.metadata.winresource]
 OriginalFilename = "main.rs"
 ProductName = "Rust Grade"
-ProductVersion = "0.1.2"
+ProductVersion = "0.1.3"
 
 #LegalCopyright = "Copyright © 2024"
 #FileDescription = "Simple program for a asingment"
