@@ -50,13 +50,13 @@ jobs:
           target: ${{ matrix.platform.target }}
           args: "--release"
           strip: true
+      - name: Rename Binary
+        run: ${{ matrix.platform.rename }}
       - name: Get Release
         id: release
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
-      - name: Rename Binary
-        run: ${{ matrix.platform.rename }}
       - name: Release Binary
         uses: AButler/upload-release-assets@v3.0
         with:
