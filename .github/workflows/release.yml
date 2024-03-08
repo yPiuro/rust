@@ -1,6 +1,10 @@
 name: release
-run-name: ${{ github.actor }}'s rust compile
-on: [release: types: [published],workflow_dispatch]
+run-name: ${{ github.actor }}'s Rust Grade Release
+on: 
+  release: 
+    types: 
+      - published
+  workflow_dispatch:
 jobs:
   release:
     name: Release - ${{ matrix.platform.release_for }}
