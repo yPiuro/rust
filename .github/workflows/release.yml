@@ -1,0 +1,56 @@
+name: release
+run-name: ${{ github.actor }}'s rust compile and release.
+on: [release: types: [published],workflow_dispatch]
+jobs:
+  release:
+    name: Release - ${{ matrix.platform.release_for }}
+    strategy:
+      matrix:
+        platform:
+          - release_for: Linux-x86_64
+            os: ubuntu-20.04
+            target: x86_64-unknown-linux-gnu
+            bin: rust_grade_Linux-x86
+            name: rust_grade-Linux-x86_64.tar.gz
+            command: build
+            path: target/x86_64-unknown-linux-gnu/release
+
+          - release_for: Windows-x86_64
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
+            bin: rust_grade.exe
+            name: rust_grade-Windows-x86_64.zip
+            command: both
+            path: target/x86_64-pc-windows-msvc/release
+
+          - release_for: MacOS-x86_64
+            os: macOS-latest
+            target: x86_64-apple-darwin
+            bin: rust_grade-MacOS-x86
+            name: rust_grade-Darwin-x86_64.tar.gz
+            command: both
+            path: target/x86_64-apple-darwin/release
+            # more release targets here ...
+
+    runs-on: ${{ matrix.platform.os }}
+    steps:
+      - name: Build Binary
+        uses: houseabsolute/actions-rust-cross@v0
+        with:
+          command: ${{ matrix.platform.command }}
+          target: ${{ matrix.platform.target }}
+          args: "--release"
+          strip: true
+      - name: Get Release
+        id: release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+      - name: Release Binary
+        uses: AButler/upload-release-assets@v3.0
+        with:
+          files: "${{ matrix.platform.path }}/${{ matrix.platform.bin }}"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-id: ${{ release.outputs.id }}
+      - name: Checkout
+        uses: actions/checkout@v3
