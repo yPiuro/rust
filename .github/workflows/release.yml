@@ -14,10 +14,11 @@ jobs:
           - release_for: Linux-x86_64
             os: ubuntu-20.04
             target: x86_64-unknown-linux-gnu
-            bin: rust_grade_Linux-x86
+            bin: rust_grade-Linux-x86
             name: rust_grade-Linux-x86_64.tar.gz
             command: build
             path: target/x86_64-unknown-linux-gnu/release
+            rename: "mv ${{ matrix.platform.path }}/rust_grade ${{ matrix.platform.path }}/${{ matrix.platform.bin }}"
 
           - release_for: Windows-x86_64
             os: windows-latest
@@ -26,6 +27,7 @@ jobs:
             name: rust_grade-Windows-x86_64.zip
             command: both
             path: target/x86_64-pc-windows-msvc/release
+            rename: "ren ${{ matrix.platform.path }}/${{ matrix.platform.bin }} ${{ matrix.platform.bin }}"
 
           - release_for: MacOS-x86_64
             os: macOS-latest
@@ -34,6 +36,7 @@ jobs:
             name: rust_grade-Darwin-x86_64.tar.gz
             command: both
             path: target/x86_64-apple-darwin/release
+            rename: "mv ${{ matrix.platform.path }}/rust_grade ${{ matrix.platform.path }}/${{ matrix.platform.bin }}"
             # more release targets here ...
 
     runs-on: ${{ matrix.platform.os }}
@@ -52,6 +55,8 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: ${{ github.repository }}
+      - name: Rename Binary
+        run: ${{ matrix.platform.rename }}
       - name: Release Binary
         uses: AButler/upload-release-assets@v3.0
         with:
