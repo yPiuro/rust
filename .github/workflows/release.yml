@@ -1,5 +1,5 @@
 name: release
-run-name: ${{ github.actor }}'s binary release
+run-name: ${{ github.actor }}'s rust compile
 on: [release: types: [published],workflow_dispatch]
 jobs:
   release:
