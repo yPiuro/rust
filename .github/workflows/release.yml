@@ -38,6 +38,8 @@ jobs:
 
     runs-on: ${{ matrix.platform.os }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Build Binary
         uses: houseabsolute/actions-rust-cross@v0
         with:
@@ -56,5 +58,3 @@ jobs:
           files: "${{ matrix.platform.path }}/${{ matrix.platform.bin }}"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-id: ${{ steps.release.outputs.id }}
-      - name: Checkout
-        uses: actions/checkout@v3
