@@ -18,7 +18,7 @@ jobs:
             name: rust_grade-Linux-x86_64.tar.gz
             command: build
             path: target/x86_64-unknown-linux-gnu/release
-            rename: "mv ${{ matrix.platform.path }}/rust_grade ${{ matrix.platform.path }}/${{ matrix.platform.bin }}"
+            rename: "mv target/x86_64-unknown-linux-gnu/release/rust_grade target/x86_64-unknown-linux-gnu/release/rust_grade-Linux-x86"
 
           - release_for: Windows-x86_64
             os: windows-latest
@@ -27,7 +27,7 @@ jobs:
             name: rust_grade-Windows-x86_64.zip
             command: both
             path: target/x86_64-pc-windows-msvc/release
-            rename: "ren ${{ matrix.platform.path }}/${{ matrix.platform.bin }} ${{ matrix.platform.bin }}"
+            rename: "echo lol"
 
           - release_for: MacOS-x86_64
             os: macOS-latest
@@ -36,7 +36,7 @@ jobs:
             name: rust_grade-Darwin-x86_64.tar.gz
             command: both
             path: target/x86_64-apple-darwin/release
-            rename: "mv ${{ matrix.platform.path }}/rust_grade ${{ matrix.platform.path }}/${{ matrix.platform.bin }}"
+            rename: "mv target/x86_64-apple-darwin/release/rust_grade target/x86_64-apple-darwin/release/rust_grade-MacOS-x86"
             # more release targets here ...
 
     runs-on: ${{ matrix.platform.os }}
